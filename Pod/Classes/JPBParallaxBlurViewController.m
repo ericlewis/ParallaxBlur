@@ -20,18 +20,20 @@
     UIScrollView *_contentView;
     
     NSMutableArray *_headerOverlayViews;
+    CGFloat IMAGE_HEIGHT;
+    CGFloat BLUR_DISTANCE;
+    CGFloat HEADER_HEIGHT;
 }
 @end
 
 @implementation JPBParallaxBlurViewController
 
 static CGFloat INVIS_DELTA = 50.0f;
-static CGFloat BLUR_DISTANCE = 200.0f;
-static CGFloat HEADER_HEIGHT = 60.0f;
-static CGFloat IMAGE_HEIGHT = 320.0f;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    IMAGE_HEIGHT = CGRectGetWidth(self.view.frame)/1.8;
+    BLUR_DISTANCE = IMAGE_HEIGHT / 3.2;
     
     _headerOverlayViews = [NSMutableArray array];
     
@@ -43,6 +45,7 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
     _mainScrollView.showsVerticalScrollIndicator = YES;
     _mainScrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _mainScrollView.autoresizesSubviews = YES;
+    _mainScrollView.backgroundColor = [UIColor whiteColor];
     self.view = _mainScrollView;
     
     _backgroundScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), IMAGE_HEIGHT)];
@@ -149,6 +152,10 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
     UIScrollView *contentView = [[UIScrollView alloc] initWithFrame:CGRectZero];
     contentView.scrollEnabled = NO;
     return contentView;
+}
+
+- (void)setHeaderMinHeight:(CGFloat)height{
+    HEADER_HEIGHT = height;
 }
 
 - (void)setHeaderImage:(UIImage*)headerImage{
