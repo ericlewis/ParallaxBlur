@@ -124,8 +124,8 @@ static CGFloat INVIS_DELTA = 50.0f;
         delta = _mainScrollView.contentOffset.y;
         
         //set alfas
-        CGFloat newAlpha = 1 - ((BLUR_DISTANCE - delta)/ BLUR_DISTANCE);
-        [_blurredImageView setAlpha:newAlpha];
+        //CGFloat newAlpha = 1 - ((BLUR_DISTANCE - delta)/ BLUR_DISTANCE);
+        [_blurredImageView setAlpha:0];
         [_floatingHeaderView setAlpha:1];
         
         // Here I check whether or not the user has scrolled passed the limit where I want to stick the header, if they have then I move the frame with the scroll view
